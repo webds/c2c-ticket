@@ -1,4 +1,4 @@
-//www/dreambigforum.webds.net/ticket/widget/c2c.js
+//dreambigforum.webds.net/ticket/widget/c2c.js
 (function(window, document) {
     'use strict';
     const URL_WIDGET = "//dreambigforum.webds.net/ticket/widget/";
