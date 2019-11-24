@@ -41,6 +41,8 @@
 
                 options.success = function (ResponseData) {
                     console.log("success",options.url);
+
+
                     switch(options.url){
                         case '/GetTicketWidgetCartCommand.cmd':{
 
@@ -54,12 +56,18 @@
                             // App.Send2Iframe();
                         }break;
                         case '/ClientLoginCommand.cmd':{
-                            RequestData['id']        = ResponseData.ClientProfile.id;
-                            RequestData['email']     = ResponseData.ClientProfile.email;
-                            RequestData['phone']     = ResponseData.ClientProfile.phone;
-                            RequestData['fullname']  = ResponseData.ClientProfile.fullName;
-                            RequestData['firstname'] = ResponseData.ClientProfile.name;
-                            RequestData['lastname']  = ResponseData.ClientProfile.lastName;
+                            try {
+                                RequestData['id']        = ResponseData.ClientProfile.id;
+                                RequestData['email']     = ResponseData.ClientProfile.email;
+                                RequestData['phone']     = ResponseData.ClientProfile.phone;
+                                RequestData['fullname']  = ResponseData.ClientProfile.fullName;
+                                RequestData['firstname'] = ResponseData.ClientProfile.name;
+                                RequestData['lastname']  = ResponseData.ClientProfile.lastName;
+
+                            }catch (e) {
+                                console.log("!!! ClientLoginCommand");
+                            }
+
                             // App.Send2Iframe();
                         }break;
                         case '/SavePaymentOptions.cmd':{
@@ -78,7 +86,7 @@
                         }break;
                         default:{}
                     }
-                    console.log(JSON.stringify(RequestData));
+                   // console.log(JSON.stringify(RequestData));
                     try {
                         if ((typeof (originalSuccess) != 'undefined') && (App.isFunction(originalSuccess))) {
                             originalSuccess(ResponseData);
